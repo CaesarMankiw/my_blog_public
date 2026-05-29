@@ -1,6 +1,7 @@
 /* Self-hosted fonts (no network fetch at build or runtime). */
 @import "@fontsource-variable/inter";
 @import "@fontsource-variable/playfair-display";
+@import "katex/dist/katex.min.css";
 
 @tailwind base;
 @tailwind components;
