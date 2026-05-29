@@ -12,7 +12,7 @@ export default function GraphPage() {
     <div className="min-h-screen text-slate-700">
       <BackgroundGrid />
       <SiteHeader name={profile.name} />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-12 animate-fade-in">
+      <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 pt-24 pb-12 animate-fade-in">
         <div className="flex items-end justify-between mb-4">
           <h1 className="font-serif text-3xl font-bold text-slate-900">知识图谱 · Knowledge Graph</h1>
           <p className="text-sm text-slate-400">

@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import Mermaid from "./Mermaid";
 import Link from "next/link";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -63,6 +64,9 @@ export default function MarkdownView({ content }: { content: string }) {
             const { node, inline, className, children, ...rest } = props;
             void node;
             const match = /language-(\w+)/.exec(className || "");
+            if (!inline && match && match[1] === "mermaid") {
+              return <Mermaid chart={String(children).replace(/\n$/, "")} />;
+            }
             return !inline && match ? (
               <div className="rounded-xl overflow-hidden shadow-md my-6 border border-slate-100 not-prose">
                 <div className="bg-[#fafafa] px-4 py-2 flex items-center gap-2 border-b border-slate-200/50">

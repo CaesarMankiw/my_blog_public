@@ -23,7 +23,7 @@ export default function HomePage() {
       <WelcomeOverlay title={site.title || profile.name} />
       <SiteHeader name={profile.name} />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-16">
+      <main className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 pt-28 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2 animate-slide-up">
             <section className="flex flex-col sm:flex-row items-start gap-6">

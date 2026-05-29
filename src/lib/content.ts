@@ -139,7 +139,10 @@ function build(): Index {
     const withImages = body.replace(IMG_EMBED_RE, (_m, inner: string) => {
       const [srcRaw, altRaw] = inner.split("|");
       const file = srcRaw.trim();
-      const href = file.startsWith("/") ? file : `/assets/${file.replace(/^assets\//, "")}`;
+      // Resolve to /assets/<basename>; images are synced there from content/ by
+      // scripts/sync-assets.mjs (also runs on predev/prebuild).
+      const base = file.split("/").pop() || file;
+      const href = file.startsWith("/") ? file : `/assets/${encodeURIComponent(base).replace(/\(/g, "%28").replace(/\)/g, "%29")}`;
       return `![${(altRaw || file).trim()}](${href})`;
     });
     // 2) Wikilinks [[note]] / [[note|alias]] -> resolved internal links.
