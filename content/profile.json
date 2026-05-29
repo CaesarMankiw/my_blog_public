@@ -1,0 +1,43 @@
+{
+  "name": "Your Name",
+  "headline": "ML Researcher · RecSys / LLM / Agents",
+  "avatarText": "雾",
+  "email": "you@example.com",
+  "affiliations": [
+    { "role": "PhD Student", "org": "Some University" },
+    { "role": "Research Intern", "org": "Some Lab" }
+  ],
+  "bio": [
+    "你好，这里是我的数字花园。我用它记录关于推荐系统、大语言模型与智能体的研究笔记与思考。",
+    "笔记之间通过 [[双链]] 连接，可以在「知识图谱」里看到它们的关系。所有内容以 Markdown 文件存放在仓库中——本地撰写，推送到 GitHub 后由 Vercel 自动部署为只读站点。"
+  ],
+  "interests": ["Recommender Systems", "Large Language Models", "LLM Agents", "Representation Learning", "RLHF"],
+  "links": [
+    { "label": "GitHub", "url": "https://github.com" },
+    { "label": "Google Scholar", "url": "https://scholar.google.com" },
+    { "label": "Twitter / X", "url": "https://x.com" }
+  ],
+  "publications": [
+    {
+      "title": "A Two-Tower Retrieval Model with Cross-Domain Transfer (示例)",
+      "authors": "Your Name, A. Coauthor, B. Advisor",
+      "venue": "Proc. of SIGIR",
+      "year": 2025,
+      "url": "https://example.com/paper1",
+      "note": "Oral"
+    },
+    {
+      "title": "Memory-Augmented ReAct Agents for Long-Horizon Tasks (示例)",
+      "authors": "Your Name, C. Collaborator",
+      "venue": "NeurIPS Workshop",
+      "year": 2024,
+      "url": "https://example.com/paper2"
+    },
+    {
+      "title": "On Alignment Stability under RLHF (示例)",
+      "authors": "D. Lead, Your Name",
+      "venue": "arXiv preprint",
+      "year": 2024
+    }
+  ]
+}

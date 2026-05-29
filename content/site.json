@@ -1,0 +1,11 @@
+{
+  "title": "雾中风景",
+  "_comment_giscus": "在 https://giscus.app 生成下面四个值后填入，即可开启 notes 评论。仓库需 public 且开启 Discussions 并安装 giscus app。留空则评论区显示未配置提示。",
+  "giscus": {
+    "repo": "",
+    "repoId": "",
+    "category": "Announcements",
+    "categoryId": "",
+    "mapping": "pathname"
+  }
+}
