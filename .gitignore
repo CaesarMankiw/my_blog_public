@@ -6,3 +6,9 @@ tsconfig.tsbuildinfo
 .DS_Store
 .vercel
 *.log
+
+docs/
+*.zip
+scripts/*.py
+.history/
+scripts/
