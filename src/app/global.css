@@ -30,3 +30,5 @@
 }
 
 @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+
+html { scroll-behavior: smooth; }

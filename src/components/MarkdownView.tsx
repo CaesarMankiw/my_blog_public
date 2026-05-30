@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import rehypeSlug from "rehype-slug";
 import Mermaid from "./Mermaid";
 import Link from "next/link";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -24,7 +25,7 @@ export default function MarkdownView({ content }: { content: string }) {
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[[rehypeKatex, { throwOnError: false, strict: false }]]}
+        rehypePlugins={[rehypeSlug, [rehypeKatex, { throwOnError: false, strict: false }]]}
         components={{
           a(props: AnchorProps) {
             const { node, href, title, children, ...rest } = props;

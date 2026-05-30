@@ -6,6 +6,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import GithubSlugger from "github-slugger";
 
 const NOTES_DIR = path.join(process.cwd(), "content", "notes");
 const PROFILE_PATH = path.join(process.cwd(), "content", "profile.json");
@@ -28,6 +29,8 @@ export type Note = NoteMeta & {
 export type TreeNode =
   | { type: "folder"; name: string; path: string; children: TreeNode[] }
   | { type: "note"; name: string; slug: string; title: string };
+
+export type TocItem = { depth: number; text: string; id: string };
 
 export type GraphData = {
   nodes: { id: string; title: string; group: string; degree: number }[];
@@ -272,6 +275,34 @@ export function getGraph(): GraphData {
   }));
 
   return { nodes, links };
+}
+
+// Table of contents for a single note. Uses the SAME github-slugger as
+// rehype-slug (in MarkdownView), so anchor ids match the rendered heading ids.
+export function getToc(slug: string): TocItem[] {
+  const note = getNote(slug);
+  if (!note) return [];
+  const slugger = new GithubSlugger();
+  const items: TocItem[] = [];
+  let inFence = false;
+  for (const raw of note.body.split("\n")) {
+    if (/^\s*```/.test(raw)) { inFence = !inFence; continue; }
+    if (inFence) continue;
+    const m = raw.match(/^(#{1,6})\s+(.*)$/);
+    if (!m) continue;
+    const text = m[2].replace(/[*_`]/g, "").replace(/\$+/g, "").trim();
+    if (!text) continue;
+    items.push({ depth: m[1].length, text, id: slugger.slug(text) });
+  }
+  return items;
+}
+
+export function getTags(): { name: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const n of getAllNotes()) for (const t of n.tags) counts.set(t, (counts.get(t) || 0) + 1);
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 }
 
 export function getProfile(): Profile {

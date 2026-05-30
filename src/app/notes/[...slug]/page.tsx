@@ -5,7 +5,8 @@ import NoteTree from "@/components/NoteTree";
 import MarkdownView from "@/components/MarkdownView";
 import Backlinks from "@/components/Backlinks";
 import Comments from "@/components/Comments";
-import { getNote, getBacklinks, getTree, getAllSlugs, getProfile, getSiteConfig } from "@/lib/content";
+import NoteToc from "@/components/NoteToc";
+import { getNote, getBacklinks, getTree, getAllSlugs, getProfile, getSiteConfig, getToc } from "@/lib/content";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug: slug.split("/") }));
@@ -25,6 +26,7 @@ export default function NotePage({ params }: { params: { slug: string[] } }) {
   const backlinks = getBacklinks(slug);
   const profile = getProfile();
   const site = getSiteConfig();
+  const toc = getToc(slug);
 
   return (
     <div className="min-h-screen text-slate-700">
@@ -59,6 +61,7 @@ export default function NotePage({ params }: { params: { slug: string[] } }) {
 
           <aside className="lg:col-span-3 lg:sticky lg:top-24 space-y-4">
             <Backlinks items={backlinks} />
+            <NoteToc items={toc} />
             {note.outgoing.length > 0 && (
               <div className="glass-card rounded-2xl p-5">
                 <h3 className="font-serif text-base font-bold text-slate-800 mb-3 flex items-center gap-2">
